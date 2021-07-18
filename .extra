@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
 GIT_AUTHOR_NAME="Devan Fischer"

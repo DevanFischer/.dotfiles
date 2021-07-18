@@ -1,34 +1,23 @@
 #!/usr/bin/env bash
 
-# Checks if directory exists
-function project () {
-        # TODO : redirect io to /dev/null and write custom messages
-        if [ $# -lt 1 ] ; then
-                cd "$PATH_TO_PROJECTS" && echo 'In Projects'
-		else
-			mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
-			echo "In project $1"
-        fi
-}
 
-
-# Dynamic daytime zsh prompt
+# Fun Dynamic daytime zsh prompt
 function prompt_sunMoon() {
 	local THIS_HOUR="$(date +"%H")"
-	if [[ $THIS_HOUR -gt 4 && $THIS_HOUR -lt 10 ]]
+	if [[ $THIS_HOUR -gt 4 && $THIS_HOUR -lt 12 ]]
 	then
 		p10k segment -f 226 -i 'Good Morning 🌅'
 	elif [[ $THIS_HOUR -eq 12 ]]
 	then
 		p10k segment -f 046 -i 'Eat Lunch 🍱'
-	elif [[ $THIS_HOUR -gt 17 && $THIS_HOUR -lt 22 ]]
+	elif [[ $THIS_HOUR -gt 12 && $THIS_HOUR -lt 22 ]]
 	then
 		p10k segment -f 220 -i 'Working Hard 🤑'
 	elif [[ $THIS_HOUR -gt 23 || $THIS_HOUR -lt 5 ]]
 	then
 		p10k segment -f 196 -i 'GO TO BED!!! 🛌'
 	else
-		p10k segment -f 202 -i 'Good Night 🌕'
+		p10k segment -f 202 -i ' 🌕'
 	fi
 }
 
@@ -206,3 +195,106 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# This line imports an OS specific functions file if one exists
+# Not been tested on any OS other than Mac OSX
+# TODO: find a better way than uname to distinguish between linux distros
+[ -f ".functions.$( uname )" ] && source ".functions.$( uname )"
+
+# Utility function to generate completions for files in a directory
+_dir_completions() {
+  # 1st argument $1 is the directory name
+  if [ -z "$1" ]; then
+    return
+  fi
+
+  # Only attempt completions if either only the command has been entered (i.e. 'play<tab>')
+  # or the command is followed by a single word (i.e. 'play grou<tab>')
+  if [ "${#COMP_WORDS[@]}" != "2" -a "${#COMP_WORDS[@]}" != "1" ]; then
+    return
+  fi
+
+  COMPREPLY=($(compgen -W "$(ls $1)" "${COMP_WORDS[1]}"))
+}
+
+# I use playgrounds to experiment with new languages and features
+# without making a full fledged project
+# This creates a new playground with the name given as a command line arg
+play () {
+        # TODO : redirect io to /dev/null and write custom messages
+        if [ "$#" -lt 1 ] ; then
+                cd "$PATH_TO_PLAYGROUND" && echo 'In playground'
+        fi
+
+        mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1"
+
+        if [ "$2" = "--autoremove" ] ; then
+          touch "$PATH_TO_PLAYGROUND/$1/.autoremove"
+        fi
+
+        if [ -e "$PATH_TO_PLAYGROUND/$1/.autoremove" ] ; then
+          echo "WARN: This playground will be deleted on the 1st of the coming month"
+        fi
+
+        echo "In playground $1" 
+}
+
+# compspec for play
+_play_completions() {
+  _dir_completions "$PATH_TO_PLAYGROUND"
+}
+
+complete -F _play_completions play
+
+# Create a new project and cd into it, does NOT check if project already exists
+project () {
+        # TODO : redirect io to /dev/null and write custom messages
+        if [ $# -lt 1 ] ; then
+                cd "$PATH_TO_PROJECTS" && echo 'In Projects'
+        fi
+
+        mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
+        echo "In project $1"
+}
+
+
+# Create a useful tmux split which has 3 panes
+# One of which is the main pane and the other two are smaller
+ide () {
+  # Get the width of the screen
+  screen_width=$( tmux display -p '#{window_width}')
+  # The small panes will be a third the width of the window
+  small_pane_width=$( expr "$screen_width" / 3 )
+
+  # Split into two halves horizontally
+  tmux split-window -h
+  # Split the second half into two halves. These are the small panes
+  tmux split-window
+  # Resize the small panes
+  tmux resize-pane -x $small_pane_width
+}
+
+# compspec for project
+_project_completions() {
+  _dir_completions "$PATH_TO_PROJECTS"
+}
+
+complete -F _project_completions project
+
+journal() {
+  curdir=$( pwd )
+  cd "$PATH_TO_JOURNAL"
+  vim "$1"
+  cd "$curdir"
+}
+
+_journal_completions() {
+  _dir_completions "$PATH_TO_JOURNAL"
+}
+
+complete -F _journal_completions journal
+
+# This should be the last line of the file
+# For local changes
+# Don't make edits below this
+[ -f ".functions.local" ] && source ".functions.local"

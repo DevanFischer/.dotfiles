@@ -208,6 +208,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
 [user]
 	name = Devan Fischer
 	email = devan@devanfischer.com
