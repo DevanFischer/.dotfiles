@@ -6,7 +6,7 @@
 
 echo_with_prompt () {
   # The narcissistic default prompt
-  PROMPT="${PROMPT:-'[ Devans Dotfiles ]'}"
+  PROMPT="${PROMPT:-[ Devans Dotfiles ]}"
   echo "$PROMPT $@"
 }
 
@@ -24,8 +24,7 @@ execute_func_with_prompt() {
 	echo_with_prompt "This utility will $2"
 	echo_with_prompt "Proceed? (y/n)"
 	read resp
-	# TODO - regex here?
-	if [ "$resp" = 'y' -o "$resp" = 'Y' ] ; then
+	if [[ "$resp" =~ [yY] ]] ; then
     # This thing here "calls" the function
     "$1" || return 2
 		echo_with_prompt "$2 complete"
