@@ -1,10 +1,9 @@
-#!/bin/bash
-
-. "$( pwd )/utils.exclude.sh"
+#!/usr/bin/env bash
 
 PROMPT='[ Bootstrap ]'
 
-source ../stow/bash/.exports
+. "$( pwd )/utils"
+. ../stow/bash/.exports
 
 # Initialize a few things
 init () {
@@ -16,14 +15,6 @@ init () {
 	mkdir -p "$PATH_TO_JOURNAL"
 }
 
-link () {
-  for folder in ../stow ; do
-    # Silently ignore errors here because the files may already exist
-    echo "$folder"
-  done
-}
-
-
 # TODO rewrite this to check for os=unknown, use the execute_func_with_prompt wrapper, etc
 install_tools () {
   local os=$(get_os)
@@ -34,7 +25,7 @@ install_tools () {
 		read resp
 		if [[ "$resp" =~ '[Yy]' ]] ; then
 			echo_with_prompt "Installing useful stuff using brew. This may take a while..."
-			sh brew.exclude.sh
+			sh brew
 		else
 			echo_with_prompt "Brew installation cancelled by user"
 		fi
@@ -60,16 +51,16 @@ install_tools () {
 
 bootstrap_vim() {
   # TODO consider sourcing this file
-  "$( pwd )/vim.bootstrap.exclude.sh"
+  "$( pwd )/vim.bootstrap"
 }
 
 bootstrap_crontab() {
   # TODO consider sourcing this file
-  "$( pwd )/crontab.bootstrap.exclude.sh"
+  "$( pwd )/crontab.bootstrap"
 }
 
 init
-execute_func_with_prompt link "stow everything"
+# execute_func_with_prompt link "stow everything"
 install_tools
 # execute_func_with_prompt bootstrap_vim "bootstrap vim with plugins and the like"
 # execute_func_with_prompt bootstrap_crontab "bootstrap the crontab"

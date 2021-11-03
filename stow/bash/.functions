@@ -1,73 +1,14 @@
 #!/usr/bin/env bash
 
-
-# Fun Dynamic daytime zsh prompt
-function prompt_sunMoon() {
-	local THIS_HOUR="$(date +"%H")"
-	if [[ $THIS_HOUR -gt 4 && $THIS_HOUR -lt 12 ]]
-	then
-		p10k segment -f 226 -i 'Good Morning 🌅'
-	elif [[ $THIS_HOUR -eq 12 ]]
-	then
-		p10k segment -f 046 -i 'Eat Lunch 🍱'
-	elif [[ $THIS_HOUR -gt 12 && $THIS_HOUR -lt 22 ]]
-	then
-		p10k segment -f 220 -i 'Working Hard 🤑'
-	elif [[ $THIS_HOUR -gt 23 || $THIS_HOUR -lt 5 ]]
-	then
-		p10k segment -f 196 -i 'GO TO BED!!! 🛌'
-	else
-		p10k segment -f 202 -i ' 🌕'
-	fi
-}
-
-
 # Create a new directory and enter it
 function mcd()
 {
     test -d "$1" || mkdir "$1" && cd "$1"
 }
-# function mkd() {
-# 	mkdir -p "$@" && cd "$_";
-# }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-}
-
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-function targz() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
-
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
-	);
-
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
-
-	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-
-	zippedSize=$(
-		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
-		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
-	);
-
-	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
 # Determine size of a file or total size of a directory
@@ -117,15 +58,6 @@ function phpserver() {
 	local ip=$(ipconfig getifaddr en1);
 	sleep 1 && open "http://${ip}:${port}/" &
 	php -S "${ip}:${port}";
-}
-
-# Compare original and gzipped file size
-function gz() {
-	local origsize=$(wc -c < "$1");
-	local gzipsize=$(gzip -c "$1" | wc -c);
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-	printf "orig: %d bytes\n" "$origsize";
-	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
 # Run `dig` and display the most useful info
@@ -236,7 +168,7 @@ play () {
           echo "WARN: This playground will be deleted on the 1st of the coming month"
         fi
 
-        echo "In playground $1" 
+        echo "In playground $1"
 }
 
 # compspec for play
@@ -244,7 +176,7 @@ _play_completions() {
   _dir_completions "$PATH_TO_PLAYGROUND"
 }
 
-complete -F _play_completions play
+# complete -F _play_completions play
 
 # Create a new project and cd into it, does NOT check if project already exists
 project () {
@@ -256,6 +188,26 @@ project () {
         mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
         echo "In project $1"
 }
+
+# compspec for project
+_project_completions() {
+  _dir_completions "$PATH_TO_PROJECTS"
+}
+
+# complete -F _project_completions project
+
+journal() {
+  curdir=$( pwd )
+  cd "$PATH_TO_JOURNAL"
+  vim "$1"
+  cd "$curdir"
+}
+
+_journal_completions() {
+  _dir_completions "$PATH_TO_JOURNAL"
+}
+
+# complete -F _journal_completions journal
 
 
 # Create a useful tmux split which has 3 panes
@@ -274,25 +226,6 @@ ide () {
   tmux resize-pane -x $small_pane_width
 }
 
-# compspec for project
-_project_completions() {
-  _dir_completions "$PATH_TO_PROJECTS"
-}
-
-complete -F _project_completions project
-
-journal() {
-  curdir=$( pwd )
-  cd "$PATH_TO_JOURNAL"
-  vim "$1"
-  cd "$curdir"
-}
-
-_journal_completions() {
-  _dir_completions "$PATH_TO_JOURNAL"
-}
-
-complete -F _journal_completions journal
 
 # This should be the last line of the file
 # For local changes
