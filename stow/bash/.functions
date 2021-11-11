@@ -183,10 +183,10 @@ project () {
         # TODO : redirect io to /dev/null and write custom messages
         if [ $# -lt 1 ] ; then
                 cd "$PATH_TO_PROJECTS" && echo 'In Projects'
+		else
+			mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
+        	echo "In project $1"
         fi
-
-        mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
-        echo "In project $1"
 }
 
 # compspec for project
@@ -209,7 +209,6 @@ _journal_completions() {
 
 # complete -F _journal_completions journal
 
-
 # Create a useful tmux split which has 3 panes
 # One of which is the main pane and the other two are smaller
 ide () {
@@ -225,7 +224,6 @@ ide () {
   # Resize the small panes
   tmux resize-pane -x $small_pane_width
 }
-
 
 # This should be the last line of the file
 # For local changes
