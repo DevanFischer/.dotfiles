@@ -1,10 +1,3 @@
-# Fill these out in .extra
-# [user]
-	# name =
-	# email =
-# [github]
-  	# user =
-
 [alias]
 	a      = add
 	cam    = commit -am
@@ -129,12 +122,13 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
+	ui = true
 
 [color "branch"]
 
@@ -144,10 +138,13 @@
 
 [color "diff"]
 
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	func = 146 bold
+	commit = yellow bold
+	whitespace = red reverse
 
 [color "status"]
 
@@ -210,13 +207,29 @@
 	insteadOf = "gist:"
 
 [user]
+
 	name = Devan Fischer
 	email = contact@devanfischer.com
 	signingKey = 42022EC9
+
 [filter "lfs"]
+
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [gpg]
+
 	program = gpg
+
+[interactive]
+
+	diffFilter = diff-so-fancy --patch
+
+[color "diff-highlight"]
+
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
