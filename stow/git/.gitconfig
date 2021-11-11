@@ -110,7 +110,7 @@
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/devanfischer/.gitignore
 	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -158,7 +158,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = false
+	gpgsign = true
 
 [diff]
 
@@ -211,4 +211,12 @@
 
 [user]
 	name = Devan Fischer
-	email = devan@devanfischer.com
+	email = contact@devanfischer.com
+	signingKey = 42022EC9
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gpg]
+	program = gpg
