@@ -21,3 +21,6 @@ chflags nohidden "~/Library"
 
 # Show Finder path bar
 defaults write com.apple.finder ShowPathbar -bool true
+
+# Show Finder status bar
+defaults write com.apple.finder ShowStatusBar -bool true
