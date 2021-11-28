@@ -1,0 +1,34 @@
+# MacOS System
+
+# Remove Message of the day prompt
+# touch $HOME/.hushlogin
+
+# TODO: add ssh setup script from github.com/shakeelmohamed/dotfiles
+# TODO: rename that repo to dotfiles-old
+# TODO: rename this repo to dotfiles
+# TODO: git clone this repo, which becomes...
+# git clone git@github.com/shakeelmohamed/dotfiles.git
+
+# TODO: these both hijack the shell session and don't let the rest of this file complete
+# Install zsh
+#sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# Install brew
+#/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# setup GH token here
+# https://github.com/settings/tokens/new?scopes=gist,public_repo&description=Homebrew
+#and then set the token as: export HOMEBREW_GITHUB_API_TOKEN="your_new_token"
+
+
+# git config --global core.excludesfile $HOME/.gitignore
+
+# Karabiner https://github.com/tekezo/Karabiner-Elements; cask install karabiner-elements
+# stow karabiner -t $HOME/
+
+# # Node.js setup
+# nvm install 8
+# npm install -g trash-cli
+# npm install -g jira-brancher
+
+# # Get the Monokai terminal theme - this should be last
+# open ./Monokai.terminal
