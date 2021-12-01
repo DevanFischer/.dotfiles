@@ -210,7 +210,7 @@
 
 	name = Devan Fischer
 	email = contact@devanfischer.com
-	signingKey = 42022EC9
+	signingkey = FCE04A8C28A945EF
 
 [filter "lfs"]
 
@@ -233,3 +233,5 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[init]
+	defaultBranch = main

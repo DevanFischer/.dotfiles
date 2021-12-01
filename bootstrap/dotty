@@ -45,7 +45,7 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 # echo ""
 # echo "##### ALL DONE"
 
-
+echo "TESTING"
 
 link () {
     echo ""
