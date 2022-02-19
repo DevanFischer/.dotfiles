@@ -16,9 +16,13 @@ alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias brewup="brew update; brew upgrade; brew cleanup; brew doctor"
 alias mycode="cd ~/Code/github.com/DevanFischer"
-alias school="cd ~/Google\ Drive/My\ Drive/School"
+# alias school="cd ~/Google\ Drive/My\ Drive/School"
 alias py='python3'
 alias pt='ptpython'
+alias python='python3'
+alias pip='pip3'
+alias pyenv='python3 -m venv env && source env/bin/activate'
+alias pyactivate='source env/bin/activate'
 
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
@@ -32,16 +36,16 @@ else # macOS `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+alias l="exa -lF"
 
 # List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+alias la="exa -laF"
 
 # List cleanonly directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="exa -lFD"
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
+alias ls="exa"
 
 # List out only hidden files
 alias lh='ls -l .??*'
