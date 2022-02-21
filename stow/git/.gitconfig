@@ -2,9 +2,9 @@
 	a      = add
 	cam    = commit -am
 	cm     = commit -m
-	pom    = push origin master
+	pom    = push origin main
 	pog    = push origin gh-pages
-	puom   = pull origin master
+	puom   = pull origin main
 	puog   = pull origin gh-pages
 	cob    = checkout -b
 	co     = checkout
