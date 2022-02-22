@@ -1,102 +1,101 @@
 #!/usr/bin/env bash
 
 # Create a new directory and enter it
-function mcd()
-{
-    test -d "$1" || mkdir "$1" && cd "$1"
+function mcd() {
+	test -d "$1" || mkdir "$1" && cd "$1"
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
 # Determine size of a file or total size of a directory
 function fs() {
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh;
+	if du -b /dev/null >/dev/null 2>&1; then
+		local arg=-sbh
 	else
-		local arg=-sh;
+		local arg=-sh
 	fi
 	if [[ -n "$@" ]]; then
-		du $arg -- "$@";
+		du $arg -- "$@"
 	else
-		du $arg .[^.]* ./*;
-	fi;
+		du $arg .[^.]* ./*
+	fi
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null;
+hash git &>/dev/null
 if [ $? -eq 0 ]; then
 	function diff() {
-		git diff --no-index --color-words "$@";
+		git diff --no-index --color-words "$@"
 	}
-fi;
+fi
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1");
+	local mimeType=$(file -b --mime-type "$1")
 	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
+		mimeType="${mimeType};charset=utf-8"
 	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
-	local port="${1:-8000}";
+	local port="${1:-8000}"
 	sleep 1 && open "http://localhost:${port}/" &
 	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
+	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-	local port="${1:-4000}";
-	local ip=$(ipconfig getifaddr en1);
+	local port="${1:-4000}"
+	local ip=$(ipconfig getifaddr en1)
 	sleep 1 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}";
+	php -S "${ip}:${port}"
 }
 
 # Run `dig` and display the most useful info
 function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer;
+	dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
 	if [ -z "${1}" ]; then
-		echo "ERROR: No domain specified.";
-		return 1;
-	fi;
+		echo "ERROR: No domain specified."
+		return 1
+	fi
 
-	local domain="${1}";
-	echo "Testing ${domain}…";
-	echo ""; # newline
+	local domain="${1}"
+	echo "Testing ${domain}…"
+	echo "" # newline
 
-	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
-		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
+	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" |
+		openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1)
 
 	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
-		local certText=$(echo "${tmp}" \
-			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
-			no_serial, no_sigdump, no_signame, no_validity, no_version");
-		echo "Common Name:";
-		echo ""; # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
-		echo ""; # newline
-		echo "Subject Alternative Name(s):";
-		echo ""; # newline
-		echo "${certText}" | grep -A 1 "Subject Alternative Name:" \
-			| sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2;
-		return 0;
+		local certText=$(echo "${tmp}" |
+			openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
+			no_serial, no_sigdump, no_signame, no_validity, no_version")
+		echo "Common Name:"
+		echo "" # newline
+		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//"
+		echo "" # newline
+		echo "Subject Alternative Name(s):"
+		echo "" # newline
+		echo "${certText}" | grep -A 1 "Subject Alternative Name:" |
+			sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2
+		return 0
 	else
-		echo "ERROR: Certificate not found.";
-		return 1;
-	fi;
+		echo "ERROR: Certificate not found."
+		return 1
+	fi
 }
 
 # Normalize `open` across Linux, macOS, and Windows.
@@ -104,9 +103,9 @@ function getcertnames() {
 if [ ! $(uname -s) = 'Darwin' ]; then
 	if grep -q Microsoft /proc/version; then
 		# Ubuntu on Windows using the Linux subsystem
-		alias open='explorer.exe';
+		alias open='explorer.exe'
 	else
-		alias open='xdg-open';
+		alias open='xdg-open'
 	fi
 fi
 
@@ -114,10 +113,10 @@ fi
 # location
 function o() {
 	if [ $# -eq 0 ]; then
-		open .;
+		open .
 	else
-		open "$@";
-	fi;
+		open "$@"
+	fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -125,104 +124,119 @@ function o() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
 
 # This line imports an OS specific functions file if one exists
 # Not been tested on any OS other than Mac OSX
 # TODO: find a better way than uname to distinguish between linux distros
-[ -f ".functions.$( uname )" ] && source ".functions.$( uname )"
+[ -f ".functions.$(uname)" ] && source ".functions.$(uname)"
 
 # Utility function to generate completions for files in a directory
 _dir_completions() {
-  # 1st argument $1 is the directory name
-  if [ -z "$1" ]; then
-    return
-  fi
+	# 1st argument $1 is the directory name
+	if [ -z "$1" ]; then
+		return
+	fi
 
-  # Only attempt completions if either only the command has been entered (i.e. 'play<tab>')
-  # or the command is followed by a single word (i.e. 'play grou<tab>')
-  if [ "${#COMP_WORDS[@]}" != "2" -a "${#COMP_WORDS[@]}" != "1" ]; then
-    return
-  fi
+	# Only attempt completions if either only the command has been entered (i.e. 'play<tab>')
+	# or the command is followed by a single word (i.e. 'play grou<tab>')
+	if [ "${#COMP_WORDS[@]}" != "2" -a "${#COMP_WORDS[@]}" != "1" ]; then
+		return
+	fi
 
-  COMPREPLY=($(compgen -W "$(ls $1)" "${COMP_WORDS[1]}"))
+	COMPREPLY=($(compgen -W "$(ls $1)" "${COMP_WORDS[1]}"))
 }
 
 # I use playgrounds to experiment with new languages and features
 # without making a full fledged project
 # This creates a new playground with the name given as a command line arg
-play () {
-        # TODO : redirect io to /dev/null and write custom messages
-        if [ "$#" -lt 1 ] ; then
-                cd "$PATH_TO_PLAYGROUND" && echo 'In playground'
-        fi
+play() {
+	# TODO : redirect io to /dev/null and write custom messages
+	if [ "$#" -lt 1 ]; then
+		cd "$PATH_TO_PLAYGROUND" && echo 'In playground'
+	fi
 
-        mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1"
+	mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1"
 
-        if [ "$2" = "--autoremove" ] ; then
-          touch "$PATH_TO_PLAYGROUND/$1/.autoremove"
-        fi
+	if [ "$2" = "--autoremove" ]; then
+		touch "$PATH_TO_PLAYGROUND/$1/.autoremove"
+	fi
 
-        if [ -e "$PATH_TO_PLAYGROUND/$1/.autoremove" ] ; then
-          echo "WARN: This playground will be deleted on the 1st of the coming month"
-        fi
+	if [ -e "$PATH_TO_PLAYGROUND/$1/.autoremove" ]; then
+		echo "WARN: This playground will be deleted on the 1st of the coming month"
+	fi
 
-        echo "In playground $1"
+	echo "In playground $1"
 }
 
 # compspec for play
 _play_completions() {
-  _dir_completions "$PATH_TO_PLAYGROUND"
+	_dir_completions "$PATH_TO_PLAYGROUND"
 }
 
 # complete -F _play_completions play
 
 # Create a new project and cd into it, does NOT check if project already exists
-project () {
-        # TODO : redirect io to /dev/null and write custom messages
-        if [ $# -lt 1 ] ; then
-                cd "$PATH_TO_PROJECTS" && echo 'In Projects'
-		else
-			mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
-        	echo "In project $1"
-        fi
+project() {
+	# TODO : redirect io to /dev/null and write custom messages
+	if [ $# -lt 1 ]; then
+		clear
+		cd "$PATH_TO_PROJECTS" && ls -1
+	else
+		clear
+		mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
+		echo "In project $1"
+	fi
+}
+
+# Create a new work project and cd into it, does NOT check if project already exists
+mazama() {
+	# TODO : redirect io to /dev/null and write custom messages
+	if [ $# -lt 1 ]; then
+		clear
+		cd "$PATH_TO_WORK" && ls -1
+	else
+		clear
+		mkdir -p "$PATH_TO_WORK/$1" && cd "$PATH_TO_WORK/$1"
+		echo "In work project $1"
+	fi
 }
 
 # compspec for project
 _project_completions() {
-  _dir_completions "$PATH_TO_PROJECTS"
+	_dir_completions "$PATH_TO_PROJECTS"
 }
 
 # complete -F _project_completions project
 
 journal() {
-  curdir=$( pwd )
-  cd "$PATH_TO_JOURNAL"
-  vim "$1"
-  cd "$curdir"
+	curdir=$(pwd)
+	cd "$PATH_TO_JOURNAL"
+	vim "$1"
+	cd "$curdir"
 }
 
 _journal_completions() {
-  _dir_completions "$PATH_TO_JOURNAL"
+	_dir_completions "$PATH_TO_JOURNAL"
 }
 
 # complete -F _journal_completions journal
 
 # Create a useful tmux split which has 3 panes
 # One of which is the main pane and the other two are smaller
-ide () {
-  # Get the width of the screen
-  screen_width=$( tmux display -p '#{window_width}')
-  # The small panes will be a third the width of the window
-  small_pane_width=$( expr "$screen_width" / 3 )
+ide() {
+	# Get the width of the screen
+	screen_width=$(tmux display -p '#{window_width}')
+	# The small panes will be a third the width of the window
+	small_pane_width=$(expr "$screen_width" / 3)
 
-  # Split into two halves horizontally
-  tmux split-window -h
-  # Split the second half into two halves. These are the small panes
-  tmux split-window
-  # Resize the small panes
-  tmux resize-pane -x $small_pane_width
+	# Split into two halves horizontally
+	tmux split-window -h
+	# Split the second half into two halves. These are the small panes
+	tmux split-window
+	# Resize the small panes
+	tmux resize-pane -x $small_pane_width
 }
 
 # This should be the last line of the file
