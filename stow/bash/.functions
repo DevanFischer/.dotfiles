@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+function gclone() {
+	# echo "The passed arguments are:" $1 $2 $3
+	# echo "The total number of arguments is:" $#
+	if [[ "$#" -ne 2 ]]; then
+		echo "Two arguments required.\n1: maz/me\n2: repo-name"
+	elif [ $1 = "me" ]; then
+		g c "git@github.com:DevanFischer/$2"
+	elif [ $1 = "maz" ]; then
+		g c "git@github.com:Mazama-Media/$2"
+	else
+		echo "Two arguments required.
+#1: maz/me
+#2: repo-name"
+	fi
+}
+
 # Create a new directory and enter it
 function mcd() {
 	test -d "$1" || mkdir "$1" && cd "$1"
