@@ -19,13 +19,7 @@
                         "description": "double hyper to terminal",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "name": "hyper pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
+                                "type": "basic",
                                 "from": {
                                     "key_code": "left_shift",
                                     "modifiers": [
@@ -45,9 +39,16 @@
                                         ]
                                     }
                                 ],
-                                "type": "basic"
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "hyper pressed",
+                                        "value": 1
+                                    }
+                                ]
                             },
                             {
+                                "type": "basic",
                                 "from": {
                                     "key_code": "left_shift",
                                     "modifiers": [
@@ -68,14 +69,6 @@
                                     }
                                 ],
                                 "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "hyper pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
                                     "to_if_invoked": [
                                         {
                                             "set_variable": {
@@ -83,9 +76,16 @@
                                                 "value": 0
                                             }
                                         }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "hyper pressed",
+                                                "value": 0
+                                            }
+                                        }
                                     ]
-                                },
-                                "type": "basic"
+                                }
                             }
                         ]
                     },
@@ -790,21 +790,7 @@
                     }
                 ]
             },
-            "devices": [
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 263,
-                        "vendor_id": 13364
-                    },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "simple_modifications": []
-                }
-            ],
+            "devices": [],
             "fn_function_keys": [
                 {
                     "from": {

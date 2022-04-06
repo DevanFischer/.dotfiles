@@ -19,6 +19,8 @@
 	<false/>
 	<key>AllowClipboardAccess</key>
 	<true/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>PurpleLove</key>
@@ -1692,7 +1694,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HackNerdFontCompleteM-Regular 15</string>
+			<string>HackNerdFontCompleteM-Regular 17</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Toolbelt</key>
@@ -1772,11 +1774,11 @@
 								<key>action</key>
 								<dict>
 									<key>action</key>
-									<integer>26</integer>
+									<integer>27</integer>
 									<key>parameter</key>
-									<string>AE280559-FE78-4869-95F9-71605BE5395A</string>
+									<string>A76C3B3B-0880-41C0-AD3D-2EA439F300EB</string>
 									<key>title</key>
-									<string>New Window</string>
+									<string>Tab</string>
 									<key>version</key>
 									<integer>0</integer>
 								</dict>
@@ -1959,7 +1961,9 @@
 								<key>algorithm</key>
 								<integer>0</integer>
 								<key>auto-rainbow style</key>
-								<integer>0</integer>
+								<integer>1</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
 								<key>remove empty components</key>
 								<false/>
 							</dict>
@@ -3227,6 +3231,8 @@
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
 	<false/>
+	<key>ShowFullScreenTabBar</key>
+	<true/>
 	<key>SmartPlacement</key>
 	<false/>
 	<key>Snippets</key>
