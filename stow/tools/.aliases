@@ -17,6 +17,7 @@ alias g="git"
 alias zshconfig="code ~/.zshrc"
 alias dotconfig='code ~/.dotfiles'
 alias ohmyzsh="code ~/.oh-my-zsh"
+alias lsdot='echo && tree -aRC git tmux tools vim zsh --noreport --prune'
 
 # Python shortcuts
 alias py='python3'
