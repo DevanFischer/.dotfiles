@@ -27,6 +27,14 @@ alias pip='pip3'
 alias pyenv='python3 -m venv env && source env/bin/activate'
 alias pyactivate='source env/bin/activate'
 
+# Tmux shortcuts
+alias t='tmux'
+alias tks='tmux kill-server'
+alias ta='tmux a'
+alias tn='tmux new-session'
+alias tls='tmux ls'
+alias tns='tmux new -s'
+
 # Print out a full color map with codes
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
