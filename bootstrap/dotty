@@ -29,7 +29,6 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 # echo ""
 # echo "Stowing apps for user: ${whoami}"
 
-
 # # install apps available to local users and root
 # for app in ${base[@]}; do
 #     stowit "${HOME}" $app
@@ -45,32 +44,30 @@ INITIAL_WORKING_DIRECTORY=$(pwd)
 # echo ""
 # echo "##### ALL DONE"
 
-echo "TESTING"
+link() {
+  echo ""
+  echo "Stowing apps for user: ${whoami}"
+  cd "../stow/"
 
-link () {
-    echo ""
-    echo "Stowing apps for user: ${whoami}"
-    cd "../stow/"
-
-    for f in */ ; do
+  for f in */; do
     echo "Linking config files for: $f"
     stow -v -R -t $HOME $f
-    done
+  done
 
-    cd $INITIAL_WORKING_DIRECTORY
-    echo ""
-    echo "##### ALL DONE"
+  cd $INITIAL_WORKING_DIRECTORY
+  echo ""
+  echo "##### ALL DONE"
 }
 
 unlink() {
-    cd "../stow/"
+  cd "../stow/"
 
-    for f in */ ; do
+  for f in */; do
 
     echo "$f"
 
-    done
+  done
 
-    cd $INITIAL_WORKING_DIRECTORY
-    echo "DONE"
+  cd $INITIAL_WORKING_DIRECTORY
+  echo "DONE"
 }

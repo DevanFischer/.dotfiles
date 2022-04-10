@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 export PATH_TO_PLAYGROUND="$HOME/playground"
 export PATH_TO_PROJECTS="$HOME/Projects"
@@ -49,6 +49,8 @@ export MANPAGER='less -X'
 export GPG_TTY=$(tty)
 
 export ZSH_WAKATIME_BIN="/usr/local/lib/python3.9/site-packages/wakatime"
+
+export NVM_DIR="$HOME/.nvm"
 
 # This should be the last line of the file
 # For local changes
