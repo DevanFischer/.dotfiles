@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 function gclone() {
   # echo "The passed arguments are:" $1 $2 $3
@@ -20,6 +20,11 @@ function gclone() {
 function mcd() {
   test -d "$1" || mkdir "$1" && cd "$1"
 }
+
+# No more '$' is not a function after copy/paste ;)
+function $ {
+  echo "\nStop copying and pasting you lazy ass! 🤣\n"
+  $@ }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
