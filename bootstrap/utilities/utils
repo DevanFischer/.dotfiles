@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Utility functions that the other dotfile related scripts will use
 # Note that this stuff isn't supposed to be used by the dotfiles themselves, just by the stuff that helps manage/bootstrap them

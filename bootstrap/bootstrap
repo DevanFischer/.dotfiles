@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 PROMPT='[ Bootstrap ]'
 
-. "$( pwd )/utils"
-. ../stow/bash/.exports
+. "$( pwd )/utilities/utils"
+. ../stow/tools/.exports
 
 # Initialize a few things
 init () {
@@ -25,7 +25,7 @@ install_tools () {
 		read resp
 		if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]] ; then
 			echo_with_prompt "Installing useful stuff using brew. This may take a while..."
-			sh brew
+			sh "$( pwd )/utilities/brew"
 		else
 			echo_with_prompt "Brew installation cancelled by user"
 		fi
@@ -54,16 +54,13 @@ bootstrap_vim() {
   "$( pwd )/vim.bootstrap"
 }
 
-bootstrap_crontab() {
-  # TODO consider sourcing this file
-  "$( pwd )/crontab.bootstrap"
-}
 
 init
 # execute_func_with_prompt link "stow everything"
 install_tools
 # execute_func_with_prompt bootstrap_vim "bootstrap vim with plugins and the like"
-# execute_func_with_prompt bootstrap_crontab "bootstrap the crontab"
+
+
 
 # Hack to make sure this script always exits successfully
 # Since the user may choose to cancel a step here and that is cool
