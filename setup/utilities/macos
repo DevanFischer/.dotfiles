@@ -1,6 +1,11 @@
+#!/usr/bin/zsh
+
 # Making my Mac truly mine :')
 
-SCREENSHOT_FOLDER=~/Desktop/Screenshots
+# Remove Message of the day prompt
+touch $HOME/.hushlogin
+
+SCREENSHOT_FOLDER=~/Pictures/Screenshots
 
 mkdir -p $SCREENSHOT_FOLDER
 

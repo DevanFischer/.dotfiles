@@ -1,0 +1,17 @@
+#!/usr/bin/zsh
+
+echo "This utility will clear the shell env for user: ${whoami}"
+echo "Proceed? (y/n)"
+read resp
+echo ""
+if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]] ; then
+  pushd "$HOME/.dotfiles/stow" > /dev/null
+    for f in */; do
+    echo "Un-linking config files for: $f"
+    stow -Dt $HOME $f
+    done
+  popd > /dev/null
+  echo "\nEnviroment all clean!"
+else
+  echo_with_prompt "Clearing cancelled by user"
+fi

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 
 function gclone() {
   # echo "The passed arguments are:" $1 $2 $3

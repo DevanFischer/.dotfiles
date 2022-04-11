@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 
 # Git credentials
 # # Not in the repository, to prevent people from accidentally committing under my name

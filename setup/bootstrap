@@ -1,9 +1,12 @@
-#!/usr/bin/env zsh
+#!/usr/bin/zsh
 
 PROMPT='[ Bootstrap ]'
 
+# Source utilities
 . "$( pwd )/utilities/utils"
-. ../stow/tools/.exports
+
+# Source exports
+. ../stow/shell/.exports
 
 # Initialize a few things
 init () {
@@ -25,41 +28,20 @@ install_tools () {
 		read resp
 		if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]] ; then
 			echo_with_prompt "Installing useful stuff using brew. This may take a while..."
-			sh "$( pwd )/utilities/brew"
+      pushd "./utilities/" > /dev/null
+			sh brew
+      popd > /dev/null
 		else
 			echo_with_prompt "Brew installation cancelled by user"
 		fi
 	else
 		echo_with_prompt "Skipping installations using Homebrew because MacOS was not detected..."
 	fi
-
-	# if [ "$os" = 'debian' ] ; then
-    # echo_with_prompt "Detected OS $os"
-	# 	echo_with_prompt "This utility will install useful utilities using apt (this has been tested on Debian buster)"
-	# 	echo_with_prompt "Proceed? (y/n)"
-	# 	read resp
-	# 	if [[ "$resp" =~ '[Yy]' ]] ; then
-	# 		echo_with_prompt "Installing useful stuff using apt. This may take a while..."
-	# 		sh apt.exclude.sh
-	# 	else
-	# 		echo_with_prompt "Apt installation cancelled by user"
-	# 	fi
-	# else
-	# 	echo_with_prompt "Skipping installations using apt because Debian/Linux was not detected..."
-	# fi
 }
-
-bootstrap_vim() {
-  # TODO consider sourcing this file
-  "$( pwd )/vim.bootstrap"
-}
-
 
 init
 # execute_func_with_prompt link "stow everything"
 install_tools
-# execute_func_with_prompt bootstrap_vim "bootstrap vim with plugins and the like"
-
 
 
 # Hack to make sure this script always exits successfully
