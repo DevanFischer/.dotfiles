@@ -16,6 +16,13 @@ function gclone() {
   fi
 }
 
+# Git function to add all files, commit, and push
+function acp() {
+git add .
+git commit -m "$1"
+git push
+}
+
 # Create a new directory and enter it
 function mcd() {
   test -d "$1" || mkdir "$1" && cd "$1"
@@ -203,7 +210,7 @@ project() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ $# -lt 1 ]; then
     clear
-    cd "$PATH_TO_PROJECTS" && ls -1
+    cd "$PATH_TO_PROJECTS" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
   else
     clear
     mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
@@ -216,7 +223,7 @@ mazama() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ $# -lt 1 ]; then
     clear
-    cd "$PATH_TO_WORK" && ls -1
+    cd "$PATH_TO_WORK" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
   else
     clear
     mkdir -p "$PATH_TO_WORK/$1" && cd "$PATH_TO_WORK/$1"
