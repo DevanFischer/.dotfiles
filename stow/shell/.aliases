@@ -13,6 +13,8 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias g="git"
 alias icloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs'"
+alias treed='tree -Cd --noreport -L'
+
 
 # Configuration file shortcuts
 alias zshconfig="code ~/.zshrc"
