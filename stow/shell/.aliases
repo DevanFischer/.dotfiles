@@ -45,17 +45,17 @@ alias tns='tmux new -s'
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
 # List files colorized in long format
-alias l="exa -lF"
+alias l="exa -lF --ignore-glob 'Icon*'"
 
 # List all files colorized in long format
-alias ll="exa -laF"
-alias la="exa -laF"
+alias ll="exa -laF --ignore-glob 'Icon*'"
+alias la="exa -laF --ignore-glob 'Icon*'"
 
 # List cleanonly directories
-alias lsd="exa -lFD"
+alias lsd="exa -lFD --ignore-glob 'Icon*'"
 
 # Always use `exa` for `ls`
-alias ls="exa"
+alias ls="exa --ignore-glob 'Icon*'"
 
 # List out only hidden files
 alias lh='exa -l .??*'
@@ -67,7 +67,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Enable aliases to be sudo’ed
+# Enable aliases to be sudo'ed
 alias sudo='sudo '
 
 # Get week number
