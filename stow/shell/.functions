@@ -1,5 +1,11 @@
 #!/usr/bin/zsh
 
+# function pyvenv() {
+#   if [[ "$#" -eq 0 ]]; then
+#   test -d 'env' && python3 -m venv env && source env/bin/activate
+# }
+
+
 function gclone() {
   # echo "The passed arguments are:" $1 $2 $3
   # echo "The total number of arguments is:" $#
@@ -16,6 +22,7 @@ function gclone() {
   fi
 }
 
+
 # Git function to add all files, commit, and push
 function acp() {
 git add .
@@ -23,20 +30,37 @@ git commit -m "$1"
 git push
 }
 
+
 # Create a new directory and enter it
 function mcd() {
   test -d "$1" || mkdir "$1" && cd "$1"
 }
+
 
 # No more '$' is not a function after copy/paste ;)
 function $ {
   echo "\nStop copying and pasting you lazy ass! 🤣\n"
   $@ }
 
+
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
   cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
+
+
+# Reload all dotfiles
+function dotreload() {
+  declare -a dotfiles=(".aliases" ".exports" ".extra" ".functions" ".path" ".ssh" ".vimrc" ".zprofile" ".zshrc")
+  for i in "${dotfiles[@]}"
+  do
+    source "$HOME/$i"
+  done
+  clear
+  echo "Dotfiles successfully reloaded."
+
+}
+
 
 # Determine size of a file or total size of a directory
 function fs() {
@@ -52,13 +76,15 @@ function fs() {
   fi
 }
 
-# Use Git’s colored diff when available
+
+# Use Git's colored diff when available
 hash git &>/dev/null
 if [ $? -eq 0 ]; then
   function diff() {
     git diff --no-index --color-words "$@"
   }
 fi
+
 
 # Create a data URL from a file
 function dataurl() {
@@ -68,6 +94,7 @@ function dataurl() {
   fi
   echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
+
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
@@ -182,10 +209,11 @@ _dir_completions() {
 play() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ "$#" -lt 1 ]; then
-    cd "$PATH_TO_PLAYGROUND" && echo 'In playground'
+    cd "$PATH_TO_PLAYGROUND" && clear && echo 'In playground' && ls -I Icon*
+  elif [ "$#" -eq 1 ]; then
+    mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1" && echo "In playground $1"
   fi
 
-  mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1"
 
   if [ "$2" = "--autoremove" ]; then
     touch "$PATH_TO_PLAYGROUND/$1/.autoremove"
@@ -194,8 +222,6 @@ play() {
   if [ -e "$PATH_TO_PLAYGROUND/$1/.autoremove" ]; then
     echo "WARN: This playground will be deleted on the 1st of the coming month"
   fi
-
-  echo "In playground $1"
 }
 
 # compspec for play
@@ -210,7 +236,8 @@ project() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ $# -lt 1 ]; then
     clear
-    cd "$PATH_TO_PROJECTS" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
+    # cd "$PATH_TO_PROJECTS" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
+    cd "$PATH_TO_PROJECTS" && ls
   else
     clear
     mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
