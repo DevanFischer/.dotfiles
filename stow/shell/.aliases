@@ -45,7 +45,7 @@ alias tns='tmux new -s'
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
 # List files colorized in long format
-alias l="exa -lF --ignore-glob 'Icon*'"
+alias l="exa -1F --ignore-glob 'Icon*'"
 
 # List all files colorized in long format
 alias ll="exa -laF --ignore-glob 'Icon*'"
