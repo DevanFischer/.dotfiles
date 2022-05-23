@@ -1,9 +1,9 @@
 #!/usr/bin/zsh
-
-export PATH_TO_PLAYGROUND="$HOME/playground"
-export PATH_TO_PROJECTS="$HOME/Projects"
-export PATH_TO_WORK="$HOME/Mazama"
-export PATH_TO_JOURNAL="$HOME/journal"
+export PATH_TO_CODE="$HOME/Code"
+export PATH_TO_SANDBOX="$PATH_TO_CODE/Sandbox"
+export PATH_TO_PROJECTS="$PATH_TO_CODE/Personal"
+export PATH_TO_MAZAMA="$PATH_TO_CODE/Mazama"
+export PATH_TO_JOURNAL="$PATH_TO_CODE/journal"
 
 # less has coloured output, which also helps with manpages
 export LESS=-R
