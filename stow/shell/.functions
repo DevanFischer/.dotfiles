@@ -2,7 +2,7 @@
 
 # function pyvenv() {
 #   if [[ "$#" -eq 0 ]]; then
-#   test -d 'env' && python3 -m venv env && source env/bin/activate
+#   test -d 'env' || python3 -m venv env && source env/bin/activate && python -m pip install -U pip
 # }
 
 
@@ -209,24 +209,24 @@ _dir_completions() {
 play() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ "$#" -lt 1 ]; then
-    cd "$PATH_TO_PLAYGROUND" && clear && echo 'In playground' && ls -I Icon*
+    cd "$PATH_TO_SANDBOX" && clear && echo 'In sandbox' && ls -I Icon*
   elif [ "$#" -eq 1 ]; then
-    mkdir -p "$PATH_TO_PLAYGROUND/$1" && cd "$PATH_TO_PLAYGROUND/$1" && echo "In playground $1"
+    mkdir -p "$PATH_TO_SANDBOX/$1" && cd "$PATH_TO_SANDBOX/$1" && echo "In sandbox $1"
   fi
 
 
   if [ "$2" = "--autoremove" ]; then
-    touch "$PATH_TO_PLAYGROUND/$1/.autoremove"
+    touch "$PATH_TO_SANDBOX/$1/.autoremove"
   fi
 
-  if [ -e "$PATH_TO_PLAYGROUND/$1/.autoremove" ]; then
+  if [ -e "$PATH_TO_SANDBOX/$1/.autoremove" ]; then
     echo "WARN: This playground will be deleted on the 1st of the coming month"
   fi
 }
 
 # compspec for play
 _play_completions() {
-  _dir_completions "$PATH_TO_PLAYGROUND"
+  _dir_completions "$PATH_TO_SANDBOX"
 }
 
 # complete -F _play_completions play
@@ -236,34 +236,34 @@ project() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ $# -lt 1 ]; then
     clear
-    # cd "$PATH_TO_PROJECTS" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
-    cd "$PATH_TO_PROJECTS" && ls
+    # cd "$PATH_TO_PERSONAL" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
+    cd "$PATH_TO_PERSONAL" && l
   else
     clear
-    mkdir -p "$PATH_TO_PROJECTS/$1" && cd "$PATH_TO_PROJECTS/$1"
+    mkdir -p "$PATH_TO_PERSONAL/$1" && cd "$PATH_TO_PERSONAL/$1"
     echo "In project $1"
   fi
 }
+# compspec for project
+_project_completions() {
+  _dir_completions "$PATH_TO_PERSONAL"
+}
+
+# complete -F _project_completions project
 
 # Create a new work project and cd into it, does NOT check if project already exists
 mazama() {
   # TODO : redirect io to /dev/null and write custom messages
   if [ $# -lt 1 ]; then
     clear
-    cd "$PATH_TO_WORK" && tree -aC -I '.git|node_modules|bower_components|Icon*' --dirsfirst "$@" -L 2 --noreport
+    cd "$PATH_TO_MAZAMA" && l
   else
     clear
-    mkdir -p "$PATH_TO_WORK/$1" && cd "$PATH_TO_WORK/$1"
+    mkdir -p "$PATH_TO_MAZAMA/$1" && cd "$PATH_TO_MAZAMA/$1"
     echo "In work project $1"
   fi
 }
 
-# compspec for project
-_project_completions() {
-  _dir_completions "$PATH_TO_PROJECTS"
-}
-
-# complete -F _project_completions project
 
 journal() {
   curdir=$(pwd)
