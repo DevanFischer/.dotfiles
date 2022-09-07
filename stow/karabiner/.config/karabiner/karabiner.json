@@ -356,7 +356,7 @@
                         ]
                     },
                     {
-                        "description": "o Launcher",
+                        "description": "; Launcher",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -386,7 +386,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "n"
@@ -449,7 +449,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "m"
@@ -512,7 +512,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "s"
@@ -575,7 +575,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "t"
@@ -638,7 +638,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "a"
@@ -701,7 +701,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "c"
@@ -743,7 +743,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "v"
@@ -806,7 +806,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "o"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "f"

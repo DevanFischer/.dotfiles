@@ -24,13 +24,15 @@ alias lsdot='echo && tree -aRC git tmux tools vim zsh --noreport --prune'
 
 # Python shortcuts
 alias py='python3'
-alias pt='ptpython'
-alias python='python3'
 alias pip='pip3'
+alias python='python3'
+alias pt='ptpython'
+alias pip2='pip'
+alias python2='python'
 alias pyvenv='python3 -m venv env && source env/bin/activate'
 alias pyactivate='source env/bin/activate'
 
-alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+# alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
 # Tmux shortcuts
 alias t='tmux'
