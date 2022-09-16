@@ -14,6 +14,7 @@ alias p="cd ~/Projects"
 alias g="git"
 alias icloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs'"
 alias treed='tree -Cd --noreport -L'
+alias vs='code .'
 
 
 # Configuration file shortcuts
