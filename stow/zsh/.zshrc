@@ -30,6 +30,8 @@ plugins=(
     macos
     colored-man-pages
     zsh-interactive-cd
+    docker
+    docker-compose
 )
 
 # Path to your oh-my-zsh installation.
@@ -58,3 +60,11 @@ eval $(thefuck --alias)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 DISABLE_AUTO_TITLE=trueexport PATH=$PATH:/Users/devan/.spicetify
+
+
+autoload bashcompinit && bashcompinit
+### Fix for making Docker plugin work
+autoload -U compinit && compinit
+###
+
+
