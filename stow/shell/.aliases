@@ -14,7 +14,10 @@ alias p="cd ~/Projects"
 alias g="git"
 alias icloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs'"
 alias treed='tree -Cd --noreport -L'
+alias vs='code .'
 
+# Mazama Alias
+alias odin="ssh 'odin@192.168.100.187'"
 
 # Configuration file shortcuts
 alias zshconfig="code ~/.zshrc"
@@ -30,6 +33,7 @@ alias pt='ptpython'
 alias pip2='pip'
 alias python2='python'
 alias pyvenv='python3 -m venv env && source env/bin/activate'
+alias esrc='source env/bin/activate'
 alias pyactivate='source env/bin/activate'
 
 # Used to ensure python versions ran through pyenv. Not using anymore.

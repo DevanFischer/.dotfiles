@@ -2,8 +2,7 @@
     "global": {
         "check_for_updates_on_startup": true,
         "show_in_menu_bar": true,
-        "show_profile_name_in_menu_bar": false,
-        "unsafe_ui": false
+        "show_profile_name_in_menu_bar": false
     },
     "profiles": [
         {
@@ -357,7 +356,7 @@
                         ]
                     },
                     {
-                        "description": "Bracket Launcher",
+                        "description": "; Launcher",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -387,7 +386,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "n"
@@ -423,48 +422,6 @@
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": []
-                                    },
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "open_bracket"
-                                        },
-                                        {
-                                            "key_code": "p"
-                                        }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode_v4",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "parameters": {
-                                    "basic.simultaneous_threshold_milliseconds": 500
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "launcher_mode_v4",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "shell_command": "open -a 'postman.app'"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
                                 "conditions": [
                                     {
                                         "name": "launcher_mode_v4",
@@ -492,7 +449,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "m"
@@ -555,7 +512,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "s"
@@ -618,7 +575,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "t"
@@ -681,7 +638,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "a"
@@ -717,13 +674,76 @@
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "name": "launcher_mode_v4",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Google Chat.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
                                 "from": {
                                     "modifiers": {
                                         "mandatory": []
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
+                                        },
+                                        {
+                                            "key_code": "c"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'Google Chat.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "v"
@@ -786,7 +806,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "open_bracket"
+                                            "key_code": ";"
                                         },
                                         {
                                             "key_code": "f"
@@ -837,8 +857,7 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
+                    "simple_modifications": []
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -851,36 +870,7 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": true,
-                    "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 835,
-                        "vendor_id": 1452
-                    },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "identifiers": {
-                        "is_keyboard": false,
-                        "is_pointing_device": true,
-                        "product_id": 835,
-                        "vendor_id": 1452
-                    },
-                    "ignore": true,
-                    "manipulate_caps_lock_led": false,
-                    "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
+                    "simple_modifications": []
                 }
             ],
             "fn_function_keys": [
