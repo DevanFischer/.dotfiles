@@ -210,7 +210,7 @@
 
 	name = Devan Fischer
 	email = contact@devanfischer.com
-	signingkey = FCE04A8C28A945EF
+	signingkey = DA3717D7F2964364
 
 [filter "lfs"]
 
