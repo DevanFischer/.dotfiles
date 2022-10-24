@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #!/bin/bash
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -32,6 +34,7 @@ plugins=(
     zsh-interactive-cd
     docker
     docker-compose
+    zsh-z
 )
 
 # Path to your oh-my-zsh installation.
@@ -39,7 +42,7 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.config/z-dir-lookup/z.sh
+# source $HOME/.config/z-dir-lookup/z.sh
 
 
 source $(brew --prefix nvm)/nvm.sh
@@ -63,8 +66,11 @@ DISABLE_AUTO_TITLE=trueexport PATH=$PATH:/Users/devan/.spicetify
 
 
 autoload bashcompinit && bashcompinit
+
 ### Fix for making Docker plugin work
 autoload -U compinit && compinit
 ###
 
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
