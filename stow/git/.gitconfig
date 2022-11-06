@@ -206,11 +206,20 @@
 
 	insteadOf = "gist:"
 
+[gpg]
+
+	format = ssh
+
+[gpg "ssh"]
+
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [user]
 
 	name = Devan Fischer
 	email = contact@devanfischer.com
-	signingkey = DA3717D7F2964364
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAu1WTfbJECW5z3PP8u0ej1HhsdOI8DC+h/11HizSseV
+
 
 [filter "lfs"]
 
@@ -219,9 +228,6 @@
 	process = git-lfs filter-process
 	required = true
 
-[gpg]
-
-	program = gpg
 
 [interactive]
 

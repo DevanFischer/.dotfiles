@@ -34,7 +34,7 @@ plugins=(
     zsh-interactive-cd
     docker
     docker-compose
-    zsh-z
+    z
 )
 
 # Path to your oh-my-zsh installation.
@@ -42,27 +42,26 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
-# source $HOME/.config/z-dir-lookup/z.sh
-
 
 source $(brew --prefix nvm)/nvm.sh
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Placed here to fix 'l' to 'exa' aliases being over written
-# TODO: figure out why this is happening and find a better solution
-source $HOME/.aliases
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-DISABLE_AUTO_TITLE=trueexport PATH=$PATH:/Users/devan/.spicetify
+DISABLE_AUTO_TITLE=true
+
+# export PATH=$PATH:/Users/devan/.spicetify
 
 
 autoload bashcompinit && bashcompinit
