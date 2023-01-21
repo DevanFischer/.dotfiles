@@ -39,6 +39,11 @@ alias pyactivate='source env/bin/activate'
 # Used to ensure python versions ran through pyenv. Not using anymore.
 # alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
+
+# Build sam image and start local api
+alias samstart="sam build; sam local start-api"
+
+
 # Tmux shortcuts
 alias t='tmux'
 alias tks='tmux kill-session -t'
