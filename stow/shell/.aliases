@@ -39,10 +39,8 @@ alias pyactivate='source env/bin/activate'
 # Used to ensure python versions ran through pyenv. Not using anymore.
 # alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
-
 # Build sam image and start local api
 alias samstart="sam build; sam local start-api"
-
 
 # Tmux shortcuts
 alias t='tmux'
@@ -57,21 +55,21 @@ alias tns='tmux new -s'
 alias colormap='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+"\n"}; done'
 
 # List files colorized in long format
-alias l="exa -1F --ignore-glob 'Icon*'"
+alias l="ls -1F --ignore-glob 'Icon*'"
 
 # List all files colorized in long format
-alias ll="exa -laF --ignore-glob 'Icon*'"
-alias la="exa -laF --ignore-glob 'Icon*'"
+alias ll="ls -laF --ignore-glob 'Icon*'"
+alias la="ls -laF --ignore-glob 'Icon*'"
 
 # List cleanonly directories
-alias lsd="exa -lFD --ignore-glob 'Icon*'"
+alias lsd="ls -lFD --ignore-glob 'Icon*'"
 
 # Always use `exa` for `ls`
-alias ls="exa --ignore-glob 'Icon*'"
+# alias ls="exa --ignore-glob 'Icon*'"
 
 # List out only hidden files
-alias lh='exa -l .??*'
-alias lhd='exa -ld .??*'
+alias lh='ls -l .??*'
+alias lhd='ls -ld .??*'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
