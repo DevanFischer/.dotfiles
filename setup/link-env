@@ -4,13 +4,13 @@ echo "This utility will link the shell config files for user: ${whoami}"
 echo "Proceed? (y/n)"
 read resp
 echo ""
-if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]] ; then
-  pushd "$HOME/.dotfiles/stow" > /dev/null
-    for f in */; do
+if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  pushd "$HOME/.dotfiles/stow" >/dev/null
+  for f in */; do
     echo "Linking config files for: $f"
     stow -Rt $HOME $f
-    done
-  popd > /dev/null
+  done
+  popd >/dev/null
   echo "\nConfig files succesfully linked!"
 else
   echo_with_prompt "Linking cancelled by user"
