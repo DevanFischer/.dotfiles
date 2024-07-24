@@ -4,6 +4,7 @@ export PATH_TO_SANDBOX="$PATH_TO_CODE/Sandbox"
 export PATH_TO_PROJECTS="$PATH_TO_CODE/Personal"
 export PATH_TO_MAZAMA="$PATH_TO_CODE/Mazama"
 export PATH_TO_JOURNAL="$PATH_TO_CODE/journal"
+export PATH_TO_HUSHLOGIN="$HOME/.hushlogin"
 
 # less has coloured output, which also helps with manpages
 export LESS=-R
