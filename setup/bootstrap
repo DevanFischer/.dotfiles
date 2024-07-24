@@ -3,34 +3,36 @@
 PROMPT='[ Bootstrap ]'
 
 # Source utilities
-. "$( pwd )/utilities/utils"
+. "$(pwd)/utilities/utils"
 
 # Source exports
 . ../stow/shell/.exports
 
 # Initialize a few things
-init () {
-  echo_with_prompt "Making a Projects folder in $PATH_TO_PROJECTS if it doesn't already exist"
+init() {
+	echo_with_prompt "Making a Projects folder in $PATH_TO_PROJECTS if it doesn't already exist"
 	mkdir -p "$PATH_TO_PROJECTS"
 	echo_with_prompt "Making a Playground folder in $PATH_TO_PLAYGROUND if it doesn't already exist"
 	mkdir -p "$PATH_TO_PLAYGROUND"
 	echo_with_prompt "Making a Journal folder in $PATH_TO_JOURNAL if it doesn't already exist"
 	mkdir -p "$PATH_TO_JOURNAL"
+	echo_with_prompt "Creating 'hushlogin' file in $PATH_TO_HUSHLOGIN if it doesn't already exist"
+	touch "$PATH_TO_HUSHLOGIN"
 }
 
 # TODO rewrite this to check for os=unknown, use the execute_func_with_prompt wrapper, etc
-install_tools () {
-  local os=$(get_os)
-	if [ "$os" = 'darwin' ] ; then
-    echo_with_prompt "Detected OS macOS"
+install_tools() {
+	local os=$(get_os)
+	if [ "$os" = 'darwin' ]; then
+		echo_with_prompt "Detected OS macOS"
 		echo_with_prompt "This utility will install useful utilities using Homebrew"
 		echo_with_prompt "Proceed? (y/n)"
 		read resp
-		if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]] ; then
+		if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 			echo_with_prompt "Installing useful stuff using brew. This may take a while..."
-      pushd "./utilities/" > /dev/null
+			pushd "./utilities/" >/dev/null
 			sh brew
-      popd > /dev/null
+			popd >/dev/null
 		else
 			echo_with_prompt "Brew installation cancelled by user"
 		fi
@@ -42,7 +44,6 @@ install_tools () {
 init
 # execute_func_with_prompt link "stow everything"
 install_tools
-
 
 # Hack to make sure this script always exits successfully
 # Since the user may choose to cancel a step here and that is cool
