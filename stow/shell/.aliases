@@ -15,6 +15,7 @@ alias g="git"
 alias icloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs'"
 alias treed='tree -Cd --noreport -L'
 alias vs='code .'
+alias repo="git remote -v | grep -o 'git@github.com:[^ ]*' | head -n 1 | sed 's/git@github.com:/https:\/\/github.com\//' | xargs open"
 
 # Mazama Alias
 alias odin="ssh 'odin@192.168.100.187'"
