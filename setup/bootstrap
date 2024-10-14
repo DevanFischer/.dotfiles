@@ -9,6 +9,7 @@ PROMPT='[ Bootstrap ]'
 . ../stow/shell/.exports
 
 # Initialize a few things
+# TODO: Ask where to put all the folders
 init() {
 	echo_with_prompt "Making a Projects folder in $PATH_TO_PROJECTS if it doesn't already exist"
 	mkdir -p "$PATH_TO_PROJECTS"
