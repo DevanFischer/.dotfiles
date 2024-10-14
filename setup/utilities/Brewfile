@@ -1,6 +1,6 @@
 tap "bramstein/webfonttools"
 tap "devopsdays/tap"
-tap "gcenx/wine"
+# tap "gcenx/wine"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/services"
@@ -18,6 +18,7 @@ brew "fzf"
 brew "git"
 brew "gnupg"
 brew "grep"
+brew "lolcat"
 brew "mas"
 brew "neofetch"
 brew "neovim"
@@ -33,11 +34,11 @@ brew "vim"
 brew "wget"
 brew "yadm"
 brew "yarn"
-brew "youtube-dl"
+# brew "youtube-dl"
 brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
-brew "heroku/brew/heroku"
+# brew "heroku/brew/heroku"
 brew "teamookla/speedtest/speedtest"
 cask "arc"
 cask "bambu-studio"
@@ -51,7 +52,7 @@ cask "font-hack-nerd-font"
 cask "font-inconsolata-for-powerline"
 cask "font-menlo-for-powerline"
 cask "google-drive"
-cask "gpg-suite"
+# cask "gpg-suite"
 cask "iterm2"
 cask "karabiner-elements"
 cask "logi-options-plus"
@@ -76,15 +77,16 @@ cask "vlc"
 cask "xmind"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
-mas "Bear", id: 1091189122
+# mas "Bear", id: 1091189122
 mas "DevUtils", id: 1533756032
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Friendly Streaming", id: 553245401
+# mas "GarageBand", id: 682658836
+# mas "iMovie", id: 408981434
+# mas "Keynote", id: 409183694
+# mas "Numbers", id: 409203825
+# mas "Pages", id: 409201541
 mas "Presentify", id: 1507246666
-mas "Todoist", id: 585829637
+mas "Screen Size Tools", id: 1661071171
 mas "WakaTime", id: 1541422018
 mas "Xcode", id: 497799835
 vscode "ahmadawais.shades-of-purple"

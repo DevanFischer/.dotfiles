@@ -1,7 +1,20 @@
 {
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false,
+        "unsafe_ui": false
+    },
     "profiles": [
         {
             "complex_modifications": {
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_held_down_threshold_milliseconds": 500,
+                    "mouse_motion_to_scroll.speed": 100
+                },
                 "rules": [
                     {
                         "description": "CAPS_LOCK to HYPER (SHIFT+COMMAND+OPTION+CONTROL) or ESCAPE (If Alone)",
@@ -14,17 +27,32 @@
                                 "to": [
                                     {
                                         "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "escape" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+,",
                                 "from": {
                                     "key_code": "comma",
-                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
                                 },
                                 "to": [],
                                 "type": "basic"
@@ -33,7 +61,14 @@
                                 "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+.",
                                 "from": {
                                     "key_code": "period",
-                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
                                 },
                                 "to": [],
                                 "type": "basic"
@@ -42,7 +77,14 @@
                                 "from": {
                                     "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+/",
                                     "key_code": "slash",
-                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
                                 },
                                 "to": [],
                                 "type": "basic"
@@ -56,24 +98,48 @@
                                 "from": {
                                     "key_code": "left_shift",
                                     "modifiers": {
-                                        "mandatory": ["right_shift"],
-                                        "optional": ["caps_lock"]
+                                        "mandatory": [
+                                            "right_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "to_if_alone": [{ "key_code": "left_shift" }],
+                                "to": [
+                                    {
+                                        "key_code": "caps_lock"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "left_shift"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "right_shift",
                                     "modifiers": {
-                                        "mandatory": ["left_shift"],
-                                        "optional": ["caps_lock"]
+                                        "mandatory": [
+                                            "left_shift"
+                                        ],
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "to_if_alone": [{ "key_code": "right_shift" }],
+                                "to": [
+                                    {
+                                        "key_code": "caps_lock"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "right_shift"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -82,23 +148,39 @@
                         "description": "Shifts Move Forward and Backward by 1 word",
                         "manipulators": [
                             {
-                                "from": { "key_code": "right_shift" },
-                                "to": [{ "key_code": "right_shift" }],
+                                "from": {
+                                    "key_code": "right_shift"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_shift"
+                                    }
+                                ],
                                 "to_if_alone": [
                                     {
                                         "key_code": "right_arrow",
-                                        "modifiers": ["option"]
+                                        "modifiers": [
+                                            "option"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
-                                "from": { "key_code": "left_shift" },
-                                "to": [{ "key_code": "left_shift" }],
+                                "from": {
+                                    "key_code": "left_shift"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift"
+                                    }
+                                ],
                                 "to_if_alone": [
                                     {
                                         "key_code": "left_arrow",
-                                        "modifiers": ["option"]
+                                        "modifiers": [
+                                            "option"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -118,7 +200,11 @@
                                 ],
                                 "from": {
                                     "key_code": "q",
-                                    "modifiers": { "mandatory": ["command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
@@ -131,7 +217,11 @@
                             {
                                 "from": {
                                     "key_code": "q",
-                                    "modifiers": { "mandatory": ["command"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
@@ -169,44 +259,97 @@
                             {
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "key_code": "up_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "key_code": "left_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "key_code": "down_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
-                                "to": [{ "key_code": "right_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "semicolon",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "right_arrow",
-                                        "modifiers": ["left_command"]
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -226,49 +369,29 @@
                                 ],
                                 "from": {
                                     "key_code": "n",
-                                    "modifiers": { "mandatory": [] }
-                                },
-                                "to": [{ "shell_command": "open -a 'notion.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": [] },
-                                    "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "n" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode_v4",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
+                                    "modifiers": {
+                                        "mandatory": []
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
                                 "to": [
                                     {
-                                        "set_variable": {
-                                            "name": "launcher_mode_v4",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a 'notion.app'" }
+                                        "shell_command": "open -a 'notion.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "p" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "n"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -283,7 +406,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -291,7 +416,51 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'postman.app'" }
+                                    {
+                                        "shell_command": "open -a 'notion.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "p"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'postman.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -305,17 +474,29 @@
                                 ],
                                 "from": {
                                     "key_code": "m",
-                                    "modifiers": { "mandatory": [] }
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
                                 },
-                                "to": [{ "shell_command": "open -a 'mail.app'" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'mail.app'"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "m" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "m"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -330,7 +511,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -338,7 +521,9 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'mail.app'" }
+                                    {
+                                        "shell_command": "open -a 'mail.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -352,17 +537,29 @@
                                 ],
                                 "from": {
                                     "key_code": "s",
-                                    "modifiers": { "mandatory": [] }
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
                                 },
-                                "to": [{ "shell_command": "open -a 'Brave Browser Beta.app'" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Brave Browser Beta.app'"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "s" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "s"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -377,7 +574,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -385,7 +584,9 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'spotify.app'" }
+                                    {
+                                        "shell_command": "open -a 'spotify.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -399,17 +600,29 @@
                                 ],
                                 "from": {
                                     "key_code": "t",
-                                    "modifiers": { "mandatory": [] }
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
                                 },
-                                "to": [{ "shell_command": "open -a 'todoist.app'" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'todoist.app'"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "t" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "t"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -424,7 +637,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -432,7 +647,9 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'todoist.app'" }
+                                    {
+                                        "shell_command": "open -a 'todoist.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -446,49 +663,29 @@
                                 ],
                                 "from": {
                                     "key_code": "a",
-                                    "modifiers": { "mandatory": [] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Activity Monitor.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": [] },
-                                    "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "a" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode_v4",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
+                                    "modifiers": {
+                                        "mandatory": []
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
                                 "to": [
                                     {
-                                        "set_variable": {
-                                            "name": "launcher_mode_v4",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a 'Activity Monitor.app'" }
+                                        "shell_command": "open -a 'Activity Monitor.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "v" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "a"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -503,7 +700,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -511,7 +710,51 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'Visual Studio Code.app'" }
+                                    {
+                                        "shell_command": "open -a 'Activity Monitor.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "v"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'Visual Studio Code.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
@@ -525,49 +768,29 @@
                                 ],
                                 "from": {
                                     "key_code": "f",
-                                    "modifiers": { "mandatory": [] }
-                                },
-                                "to": [{ "shell_command": "open -a 'fantastical.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": [] },
-                                    "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "f" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode_v4",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
+                                    "modifiers": {
+                                        "mandatory": []
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
                                 "to": [
                                     {
-                                        "set_variable": {
-                                            "name": "launcher_mode_v4",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a 'fantastical.app'" }
+                                        "shell_command": "open -a 'fantastical.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "o" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "f"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -582,7 +805,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -590,16 +815,24 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'obsidian.app'" }
+                                    {
+                                        "shell_command": "open -a 'fantastical.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "modifiers": { "mandatory": [] },
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
                                     "simultaneous": [
-                                        { "key_code": "open_bracket" },
-                                        { "key_code": "c" }
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "o"
+                                        }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -614,7 +847,9 @@
                                         ]
                                     }
                                 },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -622,7 +857,51 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'clickup.app'" }
+                                    {
+                                        "shell_command": "open -a 'obsidian.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "open_bracket"
+                                        },
+                                        {
+                                            "key_code": "c"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'clickup.app'"
+                                    }
                                 ],
                                 "type": "basic"
                             }
@@ -632,20 +911,194 @@
             },
             "devices": [
                 {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": true,
                         "product_id": 263,
                         "vendor_id": 13364
                     },
-                    "ignore": false
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 45081,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                }
+            ],
+            "fn_function_keys": [
+                {
+                    "from": {
+                        "key_code": "f1"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_decrement"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f2"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_increment"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f3"
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "mission_control"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f4"
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "spotlight"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f5"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "dictation"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f6"
+                    },
+                    "to": [
+                        {
+                            "key_code": "f6"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f7"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "rewind"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f8"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "play_or_pause"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f9"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "fast_forward"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f10"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "mute"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f11"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_decrement"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f12"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_increment"
+                        }
+                    ]
                 }
             ],
             "name": "Hyper",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": true,
+            "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "country_code": 0,
-                "keyboard_type_v2": "ansi"
+                "indicate_sticky_modifier_keys_state": true,
+                "mouse_key_xy_scale": 100
             }
         }
     ]

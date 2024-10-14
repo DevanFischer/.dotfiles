@@ -43,6 +43,8 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 source $(brew --prefix nvm)/nvm.sh
+
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -57,7 +59,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 DISABLE_AUTO_TITLE=true
 
 autoload bashcompinit && bashcompinit
-
 ### Fix for making Docker plugin work
 autoload -U compinit && compinit
 ###
