@@ -1,4 +1,5 @@
 {
+    "global": { "show_in_menu_bar": false },
     "profiles": [
         {
             "complex_modifications": {
@@ -165,6 +166,7 @@
                     },
                     {
                         "description": "Hyper + i/j/k/l == vim directional Keys",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -215,6 +217,7 @@
                     },
                     {
                         "description": "Bracket Launcher",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
