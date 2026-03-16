@@ -212,13 +212,13 @@
 
 [gpg "ssh"]
 
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [user]
 
 	name = Devan Fischer
 	email = contact@devanfischer.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAu1WTfbJECW5z3PP8u0ej1HhsdOI8DC+h/11HizSseV
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlsYzmcmxqbc8EiKdT4aK+EY6RtW647epCh9w1aIBwr
 
 
 [filter "lfs"]
